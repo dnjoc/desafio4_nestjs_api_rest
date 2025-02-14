@@ -23,7 +23,6 @@ export class UsuarioService {
       return await newUser.save();
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      //console.log('error del DTO', error);
       throw new HttpException(
         'los datos suministrados no se ajustan al UserDTO, intente de nuevo',
         HttpStatus.NOT_ACCEPTABLE,

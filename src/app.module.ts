@@ -6,7 +6,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsuarioModule } from './usuario/usuario.module';
 import { UsersGuard } from './usuario/usuario.guard';
 import { RolesGuard } from './guards/roles/roles.guard';
-//15.1.1 importar COnfigModule de @nestjs/config para poder acceder a las variables de entorno
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
