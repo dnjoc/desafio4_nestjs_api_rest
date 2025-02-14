@@ -1,10 +1,9 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
-// import { UpdateUsuarioDto } from './dto/update-usuario.dto';
-
-//12.4.1 importar el decorador
 import { Public } from 'src/decorators';
+import { Roles } from 'src/decorators';
+import { Role } from 'src/rol.enum';
 
 @Controller('users')
 export class UsuarioController {
@@ -16,7 +15,6 @@ export class UsuarioController {
     return this.usuarioService.create(createUsuarioDto);
   }
 
-  //10.1 Configurar la ruta login
   @Public()
   @Post('/login')
   login(@Body() createUsuarioDto: CreateUsuarioDto) {
@@ -24,12 +22,13 @@ export class UsuarioController {
     return this.usuarioService.login(email, password);
   }
 
-  @Public()
+  @Roles(Role.Admin)
   @Get()
   findAll() {
     return this.usuarioService.findAll();
   }
 
+  @Roles(Role.Admin)
   @Get('/get/:id')
   findOne(@Param('id') id: string) {
     return this.usuarioService.findOne(+id);
